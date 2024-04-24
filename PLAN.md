@@ -12,7 +12,7 @@ Written in the form of git commit messages:
 - [X] set up initial TypeScript schemas shared library package \
 *Using monorepo in order to share schema between api & a seeding service. Using separate service so seeding can be separated from production & only run once.*
 - [X] set up linting and formatting tooling
-- [ ] formatted project to match formatting settings
+- [X] formatted project to match formatting settings
 - [ ] set up git hooks using husky \
 *Using git hooked styling tools to ensure code is formatted consistently.*
 ### Schema Library

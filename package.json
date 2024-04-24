@@ -10,7 +10,7 @@
     "preinstall": "lerna link",
     "postinstall": "lerna bootstrap",
     "lint": "eslint --cache .",
-    "pretty": "prettier --write --ignore-unknown --config ./.prettierrc.json --ignore-path .gitignore ."
+    "format": "prettier --write --ignore-unknown --config ./.prettierrc.json --ignore-path .prettierignore ."
   },
   "dependencies": {
     "lerna": "^6.6.2"

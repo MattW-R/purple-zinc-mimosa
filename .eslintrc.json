@@ -2,16 +2,13 @@
   "env": {
     "node": true
   },
-  "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
-    "prettier"
-  ],
+  "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "prettier"],
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "regex"],
   "rules": {
     "regex/invalid": [
-      "warn", [
+      "warn",
+      [
         {
           "regex": "(FIXME|TODO|DEBUG)",
           "message": "Leftover TODO note."
