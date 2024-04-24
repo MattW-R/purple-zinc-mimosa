@@ -8,11 +8,21 @@
   ],
   "scripts": {
     "preinstall": "lerna link",
-    "postinstall": "lerna bootstrap"
+    "postinstall": "lerna bootstrap",
+    "lint": "eslint --cache .",
+    "pretty": "prettier --write --ignore-unknown --config ./.prettierrc.json --ignore-path .gitignore ."
   },
   "dependencies": {
     "lerna": "^6.6.2"
   },
   "author": "MattW-R",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.10.2",
+    "@typescript-eslint/parser": "^5.10.2",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-regex": "^1.10.0",
+    "prettier": "^2.5.1"
+  }
 }

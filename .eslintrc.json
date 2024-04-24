@@ -1,0 +1,31 @@
+{
+  "env": {
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "regex"],
+  "rules": {
+    "regex/invalid": [
+      "warn", [
+        {
+          "regex": "(FIXME|TODO|DEBUG)",
+          "message": "Leftover TODO note."
+        },
+        {
+          "regex": "console.log",
+          "files": {
+            "inspect": "client/src"
+          },
+          "message": "Leftover front-end `console.log`."
+        }
+      ]
+    ],
+    "prefer-arrow-callback": "warn",
+    "eol-last": "warn"
+  }
+}
