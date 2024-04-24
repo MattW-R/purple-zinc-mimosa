@@ -1,0 +1,17 @@
+{
+  "name": "purple-zinc-mimosa",
+  "description": "RESTful API with two endpoints to manage and retrieve company data.",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "scripts": {
+    "postinstall": "lerna bootstrap"
+  },
+  "dependencies": {
+    "lerna": "^6.6.2"
+  },
+  "author": "MattW-R",
+  "license": "ISC"
+}
