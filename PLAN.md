@@ -9,7 +9,7 @@ Written in the form of git commit messages:
 - [X] set up development docker-compose configuration with MongoDB \
 *Using MongoDB as I am most familiar with this database engine and the data schemas will comfortably fit this.*
 - [X] set up lerna monorepo
-- [ ] set up initial TypeScript schemas shared library package \
+- [X] set up initial TypeScript schemas shared library package \
 *Using monorepo in order to share schema between api & a seeding service. Using separate service so seeding can be separated from production & only run once.*
 - [ ] set up linting and formatting tooling
 - [ ] formatted project to match formatting settings
