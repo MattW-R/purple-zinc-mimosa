@@ -6,7 +6,7 @@ Written in the form of git commit messages:
 
 ### Initial Setup
 - [X] set up git repo
-- [ ] set up development docker-compose configuration with MongoDB \
+- [X] set up development docker-compose configuration with MongoDB \
 *Using MongoDB as I am most familiar with this database engine and the data schemas will comfortably fit this.*
 - [ ] set up lerna monorepo
 - [ ] set up initial TypeScript schemas shared library package \
