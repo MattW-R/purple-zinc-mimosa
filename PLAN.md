@@ -17,7 +17,7 @@ Written in the form of git commit messages:
 *Using git hooked styling tools to ensure code is formatted consistently.*
 ### Schema Library
 - [X] moved data models to models package and exposed as exports
-- [ ] exposed typescript types alongside json-schema models \
+- [X] exposed typescript types alongside json-schema models \
 *Doing this will prevent repetition of type declarations and schema declarations.*
 ### Data Seeding
 - [ ] set up initial TypeScript seeding service
