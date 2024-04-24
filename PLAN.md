@@ -22,7 +22,7 @@ Written in the form of git commit messages:
 ### Data Seeding
 - [X] set up initial TypeScript seeding service
 - [X] added json file imports to seeding service
-- [ ] added per-document schema validation to seeding service
+- [X] added per-document schema validation to seeding service
 *Gracefully handle each document.*
 - [ ] added MongoDB collection imports to seeding service
 ### API

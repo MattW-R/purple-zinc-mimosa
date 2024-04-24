@@ -12,5 +12,10 @@
     "dev": "ts-node --files index.ts",
     "build": "rm -rf build && tsc",
     "start": "node build/index.js"
+  },
+  "dependencies": {
+    "@packages/schemas": "0.0.1",
+    "ajv": "^8.12.0",
+    "ajv-formats": "^3.0.1"
   }
 }
