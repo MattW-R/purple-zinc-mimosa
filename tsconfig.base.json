@@ -3,6 +3,7 @@
   "compilerOptions": {
     "lib": ["es2019", "dom"],
     "removeComments": true,
-    "strict": true
+    "strict": true,
+    "esModuleInterop": true
   }
 }
