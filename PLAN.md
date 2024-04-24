@@ -13,7 +13,7 @@ Written in the form of git commit messages:
 *Using monorepo in order to share schema between api & a seeding service. Using separate service so seeding can be separated from production & only run once.*
 - [X] set up linting and formatting tooling
 - [X] formatted project to match formatting settings
-- [ ] set up git hooks using husky \
+- [X] set up git hooks using husky \
 *Using git hooked styling tools to ensure code is formatted consistently.*
 ### Schema Library
 - [ ] moved data models to models package and exposed as exports

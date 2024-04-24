@@ -10,7 +10,8 @@
     "preinstall": "lerna link",
     "postinstall": "lerna bootstrap",
     "lint": "eslint --cache .",
-    "format": "prettier --write --ignore-unknown --config ./.prettierrc.json --ignore-path .prettierignore ."
+    "format": "prettier --write --ignore-unknown --config ./.prettierrc.json --ignore-path .prettierignore .",
+    "prepare": "husky"
   },
   "dependencies": {
     "lerna": "^6.6.2"
@@ -23,6 +24,12 @@
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-regex": "^1.10.0",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
     "prettier": "^2.5.1"
+  },
+  "lint-staged": {
+    "**/*.(js|ts)": "eslint --fix",
+    "**/*": "prettier --write --ignore-unknown --config ./.prettierrc.json --ignore-path ./.prettierignore"
   }
 }
