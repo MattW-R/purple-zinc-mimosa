@@ -1,6 +1,7 @@
 {
   "exclude": ["**/*.test.ts"],
   "compilerOptions": {
+    "lib": ["es2019"],
     "removeComments": true,
     "strict": true
   }
