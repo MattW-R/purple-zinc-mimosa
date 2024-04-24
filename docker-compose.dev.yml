@@ -1,6 +1,18 @@
+version: '3.4'
 services:
+  seed:
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    command: ['yarn', 'lerna', 'run', 'dev', '--scope', '@apps/seed']
+    volumes:
+      - ./:/app
+    depends_on:
+      - mongo
+    restart: no
+
   mongo:
     image: mongo:4.4.13
     ports:
-      - 27017:27017
+      - '27017:27017'
     # no volume as always reestablished with seeded data

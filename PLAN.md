@@ -20,7 +20,7 @@ Written in the form of git commit messages:
 - [X] exposed typescript types alongside json-schema models \
 *Doing this will prevent repetition of type declarations and schema declarations.*
 ### Data Seeding
-- [ ] set up initial TypeScript seeding service
+- [X] set up initial TypeScript seeding service
 - [ ] added json file imports to seeding service
 - [ ] added per-document schema validation to seeding service
 *Gracefully handle each document.*
