@@ -48,6 +48,10 @@ Written in the form of git commit messages:
 ### Extension
 - [ ] added support to GET /companies/{id} route for multiple ids
 
+## Updated Plan
+
+- [X] refactored repeated json file import logic into helper function
+
 ## Notes
 
 - My understanding is that tests are not included in the task itself but only a subject of discussion, so I have not created any here.

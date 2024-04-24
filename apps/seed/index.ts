@@ -1,24 +1,24 @@
 import fs from 'fs';
 import path from 'path';
 
-const companiesDir = './data/companies';
+const parseJsonFilesInDir = async (dir: string, callback: (jsonData: any) => Promise<void>) => {
+    const fileNamesInDir = fs.readdirSync(dir).filter((file) => path.extname(file) === '.json');
 
-const companyFileNamesInDir = fs
-    .readdirSync(companiesDir)
-    .filter((file) => path.extname(file) === '.json');
+    for await (const fileName of fileNamesInDir) {
+        const fileData = fs.readFileSync(path.join(dir, fileName));
+        const jsonData = JSON.parse(fileData.toString());
+        await callback(jsonData);
+    }
+};
 
-companyFileNamesInDir.forEach((companyFileName) => {
-    const fileData = fs.readFileSync(path.join(companiesDir, companyFileName));
-    const json = JSON.parse(fileData.toString());
-});
+const seedDatabase = async () => {
+    await parseJsonFilesInDir('./data/companies', async (companyJsonData) => {
+        console.log(companyJsonData);
+    });
 
-const employeesDir = './data/employees';
+    await parseJsonFilesInDir('./data/employees', async (employeeJsonData) => {
+        console.log(employeeJsonData);
+    });
+};
 
-const employeeFileNamesInDir = fs
-    .readdirSync(employeesDir)
-    .filter((file) => path.extname(file) === '.json');
-
-employeeFileNamesInDir.forEach((employeeFileName) => {
-    const fileData = fs.readFileSync(path.join(employeesDir, employeeFileName));
-    const json = JSON.parse(fileData.toString());
-});
+seedDatabase().catch(console.log);
