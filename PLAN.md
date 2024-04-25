@@ -37,7 +37,7 @@ Written in the form of git commit messages:
 - [ ] ~~added optional employee data to GET /companies controller response and related db service~~
 - [X] added company name filtering to GET /companies controller and related db service
 - [X] added active status filtering to GET /companies controller and related db service
-- [ ] added employee name filtering to GET /companies controller and related db service
+- [X] added employee name filtering to GET /companies controller and related db service
 ### Finish & Tidy Up
 - [ ] added JSDoc blocks to functions
 - [ ] added JSDoc blocks to controllers

@@ -10,6 +10,7 @@ const QueryParams = z.object({
         .enum(['true', 'false'])
         .transform((value) => value === 'true')
         .optional(),
+    employeeName: z.string().optional(),
 });
 
 export const GetCompaniesController = async (req: express.Request, res: express.Response) => {
@@ -21,11 +22,13 @@ export const GetCompaniesController = async (req: express.Request, res: express.
             message: 'Invalid query parameters.',
         });
     } else {
-        const { limit, offset, companyName, activeStatus } = queryParamsParseResult.data;
+        const { limit, offset, companyName, activeStatus, employeeName } =
+            queryParamsParseResult.data;
 
         const companies = await CompaniesService.getCompanies(limit, offset, {
             companyName,
             activeStatus,
+            employeeName,
         });
 
         if (companies.length > 0) {

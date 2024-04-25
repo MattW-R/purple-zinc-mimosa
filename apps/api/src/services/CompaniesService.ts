@@ -16,6 +16,8 @@ const setupIndexes = async () => {
 
     await employeesCollection.createIndex({ id: 1 }, { unique: true });
     await employeesCollection.createIndex({ company_id: 1 });
+    await employeesCollection.createIndex({ first_name: 1 });
+    await employeesCollection.createIndex({ last_name: 1 });
 };
 
 setupIndexes().catch(console.log);
@@ -58,7 +60,7 @@ const getCompanyById = async (companyId: number): Promise<CompanyWithEmployees |
 const getCompanies = async (
     limit: number,
     offset: number,
-    filters?: { companyName?: string; activeStatus?: boolean }
+    filters?: { companyName?: string; activeStatus?: boolean; employeeName?: string }
 ): Promise<CompanyWithEmployees[]> => {
     const dbClient = await dbClientConnection;
     const db = dbClient.db('purple-zinc-mimosa');
@@ -70,6 +72,28 @@ const getCompanies = async (
     }
     if (filters && filters.activeStatus !== undefined) {
         initialQuery['active'] = filters.activeStatus;
+    }
+
+    const postLookupQuery: Record<string, any> = {};
+    if (filters && filters.employeeName) {
+        const employeeNames = filters.employeeName.split(' ');
+
+        postLookupQuery['employees'] = {
+            $elemMatch: {
+                $or: [
+                    {
+                        first_name: {
+                            $in: employeeNames,
+                        },
+                    },
+                    {
+                        last_name: {
+                            $in: employeeNames,
+                        },
+                    },
+                ],
+            },
+        };
     }
 
     return companiesCollection
@@ -84,6 +108,9 @@ const getCompanies = async (
                     foreignField: 'company_id',
                     as: 'employees',
                 },
+            },
+            {
+                $match: postLookupQuery,
             },
             {
                 $sort: {
