@@ -14,39 +14,47 @@ const QueryParams = z.object({
 });
 
 export const GetCompaniesController = async (req: express.Request, res: express.Response) => {
-    const queryParamsParseResult = QueryParams.safeParse(req.query);
+    try {
+        const queryParamsParseResult = QueryParams.safeParse(req.query);
 
-    if (!queryParamsParseResult.success) {
-        res.status(400).json({
-            success: false,
-            message: 'Invalid query parameters.',
-        });
-    } else {
-        const { limit, offset, companyName, activeStatus, employeeName } =
-            queryParamsParseResult.data;
-
-        const companies = await CompaniesService.getCompanies(limit, offset, {
-            companyName,
-            activeStatus,
-            employeeName,
-        });
-
-        if (companies.length > 0) {
-            res.status(200).json({
-                success: true,
-                message: 'Companies retrieved successfully.',
-                data: companies,
-                pagination: {
-                    limit,
-                    offset,
-                    totalRecords: companies.length,
-                },
+        if (!queryParamsParseResult.success) {
+            res.status(400).json({
+                success: false,
+                message: 'Invalid query parameters.',
             });
         } else {
-            res.status(404).json({
-                success: false,
-                message: 'Companies could not be found.',
+            const { limit, offset, companyName, activeStatus, employeeName } =
+                queryParamsParseResult.data;
+
+            const companies = await CompaniesService.getCompanies(limit, offset, {
+                companyName,
+                activeStatus,
+                employeeName,
             });
+
+            if (companies.length > 0) {
+                res.status(200).json({
+                    success: true,
+                    message: 'Companies retrieved successfully.',
+                    data: companies,
+                    pagination: {
+                        limit,
+                        offset,
+                        totalRecords: companies.length,
+                    },
+                });
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: 'Companies could not be found.',
+                });
+            }
         }
+    } catch (Error) {
+        console.log(Error);
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error.',
+        });
     }
 };

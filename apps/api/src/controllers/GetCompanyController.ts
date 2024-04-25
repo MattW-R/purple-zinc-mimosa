@@ -7,27 +7,35 @@ const PathParams = z.object({
 });
 
 export const GetCompanyController = async (req: express.Request, res: express.Response) => {
-    const pathParamsParseResult = PathParams.safeParse(req.params);
+    try {
+        const pathParamsParseResult = PathParams.safeParse(req.params);
 
-    if (!pathParamsParseResult.success) {
-        res.status(400).json({
-            success: false,
-            message: 'Invalid path parameters.',
-        });
-    } else {
-        const company = await CompaniesService.getCompanyById(pathParamsParseResult.data.id);
-
-        if (company) {
-            res.status(200).json({
-                success: true,
-                message: 'Company retrieved successfully.',
-                data: company,
+        if (!pathParamsParseResult.success) {
+            res.status(400).json({
+                success: false,
+                message: 'Invalid path parameters.',
             });
         } else {
-            res.status(404).json({
-                success: false,
-                message: 'Company could not be found.',
-            });
+            const company = await CompaniesService.getCompanyById(pathParamsParseResult.data.id);
+
+            if (company) {
+                res.status(200).json({
+                    success: true,
+                    message: 'Company retrieved successfully.',
+                    data: company,
+                });
+            } else {
+                res.status(404).json({
+                    success: false,
+                    message: 'Company could not be found.',
+                });
+            }
         }
+    } catch (Error) {
+        console.log(Error);
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error.',
+        });
     }
 };
