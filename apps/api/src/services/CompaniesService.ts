@@ -1,5 +1,6 @@
-import { MongoClient } from 'mongodb';
+import { MongoClient, Filter } from 'mongodb';
 import { CompanyWithEmployees } from '../types/CompanyWithEmployees';
+import { Company } from '@packages/schemas';
 
 const dbClientConnection = new MongoClient(
     process.env.MONGO_CONNECTION || 'mongodb://localhost:27017'
@@ -121,7 +122,7 @@ const getCompanies = async (
     const db = dbClient.db('purple-zinc-mimosa');
     const companiesCollection = db.collection('companies');
 
-    const initialQuery: Record<string, any> = {};
+    const initialQuery: Filter<Company> = {};
     if (filters && filters.companyName) {
         initialQuery['name'] = filters.companyName;
     }
@@ -129,7 +130,7 @@ const getCompanies = async (
         initialQuery['active'] = filters.activeStatus;
     }
 
-    const postLookupQuery: Record<string, any> = {};
+    const postLookupQuery: Filter<CompanyWithEmployees> = {};
     if (filters && filters.employeeName) {
         const employeeNames = filters.employeeName.split(' ');
 

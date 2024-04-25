@@ -9,7 +9,7 @@
   "scripts": {
     "postinstall": "lerna bootstrap",
     "lint": "eslint --cache .",
-    "format": "prettier --write --ignore-unknown --config ./.prettierrc.json --ignore-path .prettierignore .",
+    "format": "prettier --write --ignore-unknown --config ./.prettierrc.json --ignore-path .eslintignore .",
     "prepare": "husky",
     "build": "lerna run build"
   },
@@ -30,6 +30,6 @@
   },
   "lint-staged": {
     "**/*.(js|ts)": "eslint --fix",
-    "**/*": "prettier --write --ignore-unknown --config ./.prettierrc.json --ignore-path ./.prettierignore"
+    "**/*": "prettier --write --ignore-unknown --config ./.prettierrc.json --ignore-path ./.eslintignore"
   }
 }

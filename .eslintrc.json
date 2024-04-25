@@ -23,6 +23,7 @@
       ]
     ],
     "prefer-arrow-callback": "warn",
-    "eol-last": "warn"
+    "eol-last": "warn",
+    "@typescript-eslint/no-explicit-any": "off"
   }
 }
