@@ -10,6 +10,14 @@ const PathParams = z.object({
     ]),
 });
 
+/**
+ * @name GetCompanyController
+ * @route {GET} /company/:ids
+ * @description Retrieves company information by IDs provided in the path parameters.
+ * @authentication Does not require authentication.
+ * @path-param {string} ids - Comma-separated list of company IDs to retrieve information for.
+ * @returns {Promise<void>} - Promise representing the completion of the request handling.
+ */
 export const GetCompanyController = async (req: express.Request, res: express.Response) => {
     try {
         const pathParamsParseResult = PathParams.safeParse(req.params);

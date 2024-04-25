@@ -40,7 +40,7 @@ Written in the form of git commit messages:
 - [X] added employee name filtering to GET /companies controller and related db service
 ### Finish & Tidy Up
 - [X] added JSDoc blocks to functions
-- [ ] added JSDoc blocks to controllers
+- [X] added JSDoc blocks to controllers
 - [ ] added production mode to project
 - [ ] added project README
 - [ ] added route documentation

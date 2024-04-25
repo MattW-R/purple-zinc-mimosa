@@ -13,6 +13,18 @@ const QueryParams = z.object({
     employeeName: z.string().optional(),
 });
 
+/**
+ * @name GetCompaniesController
+ * @route {GET} /companies
+ * @description Retrieves companies based on specified query parameters.
+ * @authentication Does not require authentication.
+ * @query-param {number} limit - The maximum number of companies to retrieve (default: 100, max: 1000, min: 0).
+ * @query-param {number} offset - The number of companies to skip (default: 0, min: 0).
+ * @query-param {string} [companyName] - The name of the company to filter by.
+ * @query-param {boolean} [activeStatus] - The active status of the company (true or false).
+ * @query-param {string} [employeeName] - The name of an employee of the company to filter by.
+ * @returns {Promise<void>} - Promise representing the completion of the request handling.
+ */
 export const GetCompaniesController = async (req: express.Request, res: express.Response) => {
     try {
         const queryParamsParseResult = QueryParams.safeParse(req.query);
