@@ -243,7 +243,7 @@
       "name": "Not Allowed Methods",
       "item": [
         {
-          "name": "GET company Copy",
+          "name": "POST company",
           "request": {
             "method": "POST",
             "header": [],
