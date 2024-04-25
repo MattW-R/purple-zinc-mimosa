@@ -24,7 +24,7 @@ Written in the form of git commit messages:
 - [X] added json file imports to seeding service
 - [X] added per-document schema validation to seeding service
 *Gracefully handle each document.*
-- [ ] added MongoDB collection imports to seeding service
+- [X] added MongoDB collection imports to seeding service
 ### API
 - [ ] set up initial TypeScript express API \
 *Using express due to familiarity and diversity of available packages to expand on it.*

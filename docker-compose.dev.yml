@@ -5,6 +5,8 @@ services:
       context: .
       dockerfile: dev.Dockerfile
     command: ['yarn', 'lerna', 'run', 'dev', '--scope', '@apps/seed']
+    environment:
+      - MONGO_CONNECTION=mongodb://mongo:27017
     volumes:
       - ./:/app
     depends_on:

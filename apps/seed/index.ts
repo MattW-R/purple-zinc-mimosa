@@ -3,6 +3,11 @@ import path from 'path';
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
 import { CompanySchema, EmployeeSchema } from '@packages/schemas';
+import { MongoClient } from 'mongodb';
+
+const dbClientConnection = new MongoClient(
+    process.env.MONGO_CONNECTION || 'mongodb://localhost:27017'
+).connect();
 
 const parseJsonFilesInDir = async (
     dir: string,
@@ -18,6 +23,11 @@ const parseJsonFilesInDir = async (
 };
 
 const seedDatabase = async () => {
+    const dbClient = await dbClientConnection;
+    const db = dbClient.db('purple-zinc-mimosa');
+    const companiesCollection = db.collection('companies');
+    const employeesCollection = db.collection('employees');
+
     const ajv = new Ajv();
     addFormats(ajv);
 
@@ -25,11 +35,19 @@ const seedDatabase = async () => {
 
     await parseJsonFilesInDir('./data/companies', async (fileName, companiesJsonData) => {
         if (Array.isArray(companiesJsonData)) {
-            const validCompanyData = companiesJsonData.filter((companyJsonData) =>
+            const validCompaniesData = companiesJsonData.filter((companyJsonData) =>
                 companyValidator(companyJsonData)
             );
 
-            console.log(validCompanyData.length);
+            if (validCompaniesData.length > 0) {
+                const insertManyResult = await companiesCollection.insertMany(validCompaniesData);
+
+                console.log(
+                    `${insertManyResult.insertedCount} valid / ${companiesJsonData.length} JSON documents inserted into companies collection.`
+                );
+            } else {
+                console.log(`No valid JSON data in ${fileName}.`);
+            }
         } else {
             console.log(`${fileName} does not contain a JSON array.`);
         }
@@ -43,7 +61,15 @@ const seedDatabase = async () => {
                 employeeValidator(employeeJsonData)
             );
 
-            console.log(validEmployeesData.length);
+            if (validEmployeesData.length > 0) {
+                const insertManyResult = await employeesCollection.insertMany(validEmployeesData);
+
+                console.log(
+                    `${insertManyResult.insertedCount} valid / ${employeesJsonData.length} JSON documents inserted into employees collection.`
+                );
+            } else {
+                console.log(`No valid JSON data in ${fileName}.`);
+            }
         } else {
             console.log(`${fileName} does not contain a JSON array.`);
         }
