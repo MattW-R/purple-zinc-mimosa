@@ -25,6 +25,11 @@ export const GetCompaniesController = async (req: express.Request, res: express.
                 success: true,
                 message: 'Companies retrieved successfully.',
                 data: companies,
+                pagination: {
+                    limit,
+                    offset,
+                    totalRecords: companies.length,
+                },
             });
         } else {
             res.status(404).json({
