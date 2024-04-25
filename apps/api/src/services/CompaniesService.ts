@@ -22,12 +22,12 @@ const setupIndexes = async () => {
 
 setupIndexes().catch(console.log);
 
-const getCompanyById = async (companyId: number): Promise<CompanyWithEmployees | null> => {
+const getCompanyById = async (companyId: number): Promise<CompanyWithEmployees[]> => {
     const dbClient = await dbClientConnection;
     const db = dbClient.db('purple-zinc-mimosa');
     const companiesCollection = db.collection('companies');
 
-    const [company] = await companiesCollection
+    return companiesCollection
         .aggregate<CompanyWithEmployees>([
             {
                 $match: {
@@ -53,8 +53,39 @@ const getCompanyById = async (companyId: number): Promise<CompanyWithEmployees |
             },
         ])
         .toArray();
+};
 
-    return company;
+const getCompaniesByIds = async (companyIds: number[]): Promise<CompanyWithEmployees[]> => {
+    const dbClient = await dbClientConnection;
+    const db = dbClient.db('purple-zinc-mimosa');
+    const companiesCollection = db.collection('companies');
+
+    return companiesCollection
+        .aggregate<CompanyWithEmployees>([
+            {
+                $match: {
+                    id: { $in: companyIds },
+                },
+            },
+            {
+                $limit: companyIds.length,
+            },
+            {
+                $lookup: {
+                    from: 'employees',
+                    localField: 'id',
+                    foreignField: 'company_id',
+                    as: 'employees',
+                },
+            },
+            {
+                $project: {
+                    _id: 0,
+                    'employees._id': 0,
+                },
+            },
+        ])
+        .toArray();
 };
 
 const getCompanies = async (
@@ -135,5 +166,6 @@ const getCompanies = async (
 
 export const CompaniesService = {
     getCompanyById,
+    getCompaniesByIds,
     getCompanies,
 };

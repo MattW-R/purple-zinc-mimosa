@@ -4,7 +4,7 @@ import { GetCompaniesController } from './src/controllers/GetCompaniesController
 
 const Routes = (app: express.Application): void => {
     app.get('/companies', GetCompaniesController);
-    app.get('/companies/:id', GetCompanyController);
+    app.get('/companies/:ids', GetCompanyController);
 
     app.all('/*', (req, res) => {
         res.status(405).json({

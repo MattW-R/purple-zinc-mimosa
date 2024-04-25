@@ -46,7 +46,7 @@ Written in the form of git commit messages:
 - [ ] added route documentation
 - [ ] added newman cli support for demonstrating endpoints
 ### Extension
-- [ ] added support to GET /companies/{id} route for multiple ids
+- [X] added support to GET /companies/{id} route for multiple ids
 
 ## Updated Plan
 

@@ -1,9 +1,13 @@
 import express from 'express';
 import { CompaniesService } from '../services/CompaniesService';
 import { z } from 'zod';
+import { CompanyWithEmployees } from '../types/CompanyWithEmployees';
 
 const PathParams = z.object({
-    id: z.coerce.number(),
+    ids: z.union([
+        z.coerce.number(),
+        z.string().transform((val) => val.split(',').map(Number).slice(0, 1000)),
+    ]),
 });
 
 export const GetCompanyController = async (req: express.Request, res: express.Response) => {
@@ -16,13 +20,20 @@ export const GetCompanyController = async (req: express.Request, res: express.Re
                 message: 'Invalid path parameters.',
             });
         } else {
-            const company = await CompaniesService.getCompanyById(pathParamsParseResult.data.id);
+            const { ids } = pathParamsParseResult.data;
 
-            if (company) {
+            let companies: CompanyWithEmployees[] = [];
+            if (Array.isArray(ids)) {
+                companies = await CompaniesService.getCompaniesByIds(ids);
+            } else {
+                companies = await CompaniesService.getCompanyById(ids);
+            }
+
+            if (companies.length > 0) {
                 res.status(200).json({
                     success: true,
-                    message: 'Company retrieved successfully.',
-                    data: company,
+                    message: 'Companies retrieved successfully.',
+                    data: companies,
                 });
             } else {
                 res.status(404).json({
