@@ -5,6 +5,10 @@ const dbClientConnection = new MongoClient(
     process.env.MONGO_CONNECTION || 'mongodb://localhost:27017'
 ).connect();
 
+/**
+ * Sets up indexes in the database.
+ * @returns {Promise<void>}
+ */
 const setupIndexes = async () => {
     const dbClient = await dbClientConnection;
     const db = dbClient.db('purple-zinc-mimosa');
@@ -22,6 +26,11 @@ const setupIndexes = async () => {
 
 setupIndexes().catch(console.log);
 
+/**
+ * Retrieves a company with employees by its ID.
+ * @param {number} companyId - The company ID.
+ * @returns {Promise<CompanyWithEmployees[]>}
+ */
 const getCompanyById = async (companyId: number): Promise<CompanyWithEmployees[]> => {
     const dbClient = await dbClientConnection;
     const db = dbClient.db('purple-zinc-mimosa');
@@ -55,6 +64,11 @@ const getCompanyById = async (companyId: number): Promise<CompanyWithEmployees[]
         .toArray();
 };
 
+/**
+ * Retrieves companies with employees by their IDs.
+ * @param {number[]} companyIds - An array of company IDs.
+ * @returns {Promise<CompanyWithEmployees[]>}
+ */
 const getCompaniesByIds = async (companyIds: number[]): Promise<CompanyWithEmployees[]> => {
     const dbClient = await dbClientConnection;
     const db = dbClient.db('purple-zinc-mimosa');
@@ -88,6 +102,16 @@ const getCompaniesByIds = async (companyIds: number[]): Promise<CompanyWithEmplo
         .toArray();
 };
 
+/**
+ * Retrieves companies with employees, optionally filtered.
+ * @param {number} limit - The maximum number of companies to retrieve.
+ * @param {number} offset - The number of companies to skip.
+ * @param {object} [filters] - Optional filters for company retrieval.
+ * @param {string} [filters.companyName] - Filter by company name.
+ * @param {boolean} [filters.activeStatus] - Filter by active status.
+ * @param {string} [filters.employeeName] - Filter by employee name.
+ * @returns {Promise<CompanyWithEmployees[]>}
+ */
 const getCompanies = async (
     limit: number,
     offset: number,
