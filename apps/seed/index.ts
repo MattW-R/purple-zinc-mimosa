@@ -47,9 +47,7 @@ const seedDatabase = async () => {
             );
 
             if (validCompaniesData.length > 0) {
-                const insertManyResult = await companiesCollection.insertMany(validCompaniesData, {
-                    ordered: false,
-                });
+                const insertManyResult = await companiesCollection.insertMany(validCompaniesData);
 
                 console.log(
                     `${insertManyResult.insertedCount} valid / ${companiesJsonData.length} JSON documents inserted into companies collection.`
@@ -71,9 +69,7 @@ const seedDatabase = async () => {
             );
 
             if (validEmployeesData.length > 0) {
-                const insertManyResult = await employeesCollection.insertMany(validEmployeesData, {
-                    ordered: false,
-                });
+                const insertManyResult = await employeesCollection.insertMany(validEmployeesData);
 
                 console.log(
                     `${insertManyResult.insertedCount} valid / ${employeesJsonData.length} JSON documents inserted into employees collection.`
