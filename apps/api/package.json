@@ -1,0 +1,22 @@
+{
+  "name": "@apps/api",
+  "version": "0.0.1",
+  "license": "MIT",
+  "main": "./build/index.js",
+  "dependencies": {
+    "@packages/schemas": "0.0.1",
+    "express": "^4.19.2",
+    "mongodb": "^6.5.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.12.7",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.1.6"
+  },
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only index.ts",
+    "build": "rm -rf build && tsc",
+    "start": "node build/index.js"
+  }
+}

@@ -1,5 +1,21 @@
 version: '3.4'
 services:
+  api:
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    expose:
+      - '8080'
+    ports:
+      - '8080:8080'
+    command: ['yarn', 'lerna', 'run', 'dev', '--scope', '@apps/api']
+    environment:
+      - MONGO_CONNECTION=mongodb://mongo:27017
+    volumes:
+      - ./:/app
+    depends_on:
+      - mongo
+
   seed:
     build:
       context: .
