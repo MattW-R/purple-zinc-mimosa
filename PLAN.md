@@ -32,7 +32,7 @@ Written in the form of git commit messages:
 - [X] created basic controller and route for retrieving a single company's data
 - [X] created basic db service function for retrieving multiple companies' data
 - [X] created basic controller and route for retrieving multiple companies' data
-- [ ] added pagination to GET /companies controller and related db service
+- [X] added pagination to GET /companies controller and related db service
 - [ ] added pagination metadata to GET /companies controller response
 - [ ] added optional employee data to GET /companies controller response and related db service
 - [ ] added company name filtering to GET /companies controller and related db service

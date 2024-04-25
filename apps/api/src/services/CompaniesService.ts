@@ -54,7 +54,7 @@ const getCompanyById = async (companyId: number): Promise<CompanyWithEmployees |
     return company;
 };
 
-const getCompanies = async (): Promise<CompanyWithEmployees[]> => {
+const getCompanies = async (limit: number, offset: number): Promise<CompanyWithEmployees[]> => {
     const dbClient = await dbClientConnection;
     const db = dbClient.db('purple-zinc-mimosa');
     const companiesCollection = db.collection('companies');
@@ -68,6 +68,17 @@ const getCompanies = async (): Promise<CompanyWithEmployees[]> => {
                     foreignField: 'company_id',
                     as: 'employees',
                 },
+            },
+            {
+                $sort: {
+                    id: 1,
+                },
+            },
+            {
+                $skip: offset,
+            },
+            {
+                $limit: limit,
             },
             {
                 $project: {
