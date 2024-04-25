@@ -43,7 +43,7 @@ Written in the form of git commit messages:
 - [X] added JSDoc blocks to controllers
 - [X] added production mode to project
 - [X] added project README
-- [ ] added route documentation
+- [X] added route documentation
 - [ ] added newman cli support for demonstrating endpoints
 ### Extension
 - [X] added support to GET /companies/{id} route for multiple ids
