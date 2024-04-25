@@ -35,7 +35,7 @@ Written in the form of git commit messages:
 - [X] added pagination to GET /companies controller and related db service
 - [X] added pagination metadata to GET /companies controller response
 - [ ] ~~added optional employee data to GET /companies controller response and related db service~~
-- [ ] added company name filtering to GET /companies controller and related db service
+- [X] added company name filtering to GET /companies controller and related db service
 - [ ] added active status filtering to GET /companies controller and related db service
 - [ ] added employee name filtering to GET /companies controller and related db service
 ### Finish & Tidy Up

@@ -12,6 +12,7 @@ const setupIndexes = async () => {
     const employeesCollection = db.collection('employees');
 
     await companiesCollection.createIndex({ id: 1 }, { unique: true });
+    await companiesCollection.createIndex({ name: 1 });
 
     await employeesCollection.createIndex({ id: 1 }, { unique: true });
     await employeesCollection.createIndex({ company_id: 1 });
@@ -54,13 +55,25 @@ const getCompanyById = async (companyId: number): Promise<CompanyWithEmployees |
     return company;
 };
 
-const getCompanies = async (limit: number, offset: number): Promise<CompanyWithEmployees[]> => {
+const getCompanies = async (
+    limit: number,
+    offset: number,
+    filters?: { companyName?: string }
+): Promise<CompanyWithEmployees[]> => {
     const dbClient = await dbClientConnection;
     const db = dbClient.db('purple-zinc-mimosa');
     const companiesCollection = db.collection('companies');
 
+    const initialQuery: Record<string, any> = {};
+    if (filters && filters.companyName) {
+        initialQuery['name'] = filters.companyName;
+    }
+
     return companiesCollection
         .aggregate<CompanyWithEmployees>([
+            {
+                $match: initialQuery,
+            },
             {
                 $lookup: {
                     from: 'employees',
