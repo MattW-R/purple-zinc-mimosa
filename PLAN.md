@@ -51,6 +51,8 @@ Written in the form of git commit messages:
 ## Updated Plan
 
 - [X] refactored repeated json file import logic into helper function
+- [X] fixed mongo instance still holding seeded data between restarts
+- [ ] removed MongoDB ObjectID default ids on insertion
 
 ## Notes
 

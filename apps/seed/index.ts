@@ -22,6 +22,13 @@ const parseJsonFilesInDir = async (
     }
 };
 
+const dropDatabase = async () => {
+    const dbClient = await dbClientConnection;
+    const db = dbClient.db('purple-zinc-mimosa');
+
+    await db.dropDatabase();
+};
+
 const seedDatabase = async () => {
     const dbClient = await dbClientConnection;
     const db = dbClient.db('purple-zinc-mimosa');
@@ -40,7 +47,9 @@ const seedDatabase = async () => {
             );
 
             if (validCompaniesData.length > 0) {
-                const insertManyResult = await companiesCollection.insertMany(validCompaniesData);
+                const insertManyResult = await companiesCollection.insertMany(validCompaniesData, {
+                    ordered: false,
+                });
 
                 console.log(
                     `${insertManyResult.insertedCount} valid / ${companiesJsonData.length} JSON documents inserted into companies collection.`
@@ -62,7 +71,9 @@ const seedDatabase = async () => {
             );
 
             if (validEmployeesData.length > 0) {
-                const insertManyResult = await employeesCollection.insertMany(validEmployeesData);
+                const insertManyResult = await employeesCollection.insertMany(validEmployeesData, {
+                    ordered: false,
+                });
 
                 console.log(
                     `${insertManyResult.insertedCount} valid / ${employeesJsonData.length} JSON documents inserted into employees collection.`
@@ -76,4 +87,8 @@ const seedDatabase = async () => {
     });
 };
 
-seedDatabase().catch(console.log);
+dropDatabase()
+    .then(async () => {
+        await seedDatabase();
+    })
+    .catch(console.log);

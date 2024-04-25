@@ -17,4 +17,8 @@ services:
     image: mongo:4.4.13
     ports:
       - '27017:27017'
-    # no volume as always reestablished with seeded data
+    volumes:
+      - mongo_data:/data/db
+
+volumes:
+  mongo_data:
