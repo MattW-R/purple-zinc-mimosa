@@ -42,7 +42,7 @@ Written in the form of git commit messages:
 - [X] added JSDoc blocks to functions
 - [X] added JSDoc blocks to controllers
 - [X] added production mode to project
-- [ ] added project README
+- [X] added project README
 - [ ] added route documentation
 - [ ] added newman cli support for demonstrating endpoints
 ### Extension
