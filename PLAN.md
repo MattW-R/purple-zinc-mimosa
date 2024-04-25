@@ -31,7 +31,7 @@ Written in the form of git commit messages:
 - [X] created basic db service function for retrieving a single company's data
 - [X] created basic controller and route for retrieving a single company's data
 - [X] created basic db service function for retrieving multiple companies' data
-- [ ] created basic controller and route for retrieving multiple companies' data
+- [X] created basic controller and route for retrieving multiple companies' data
 - [ ] added pagination to GET /companies controller and related db service
 - [ ] added pagination metadata to GET /companies controller response
 - [ ] added optional employee data to GET /companies controller response and related db service
@@ -52,7 +52,8 @@ Written in the form of git commit messages:
 
 - [X] refactored repeated json file import logic into helper function
 - [X] fixed mongo instance still holding seeded data between restarts
-- [ ] add no method fallback response to api
+- [ ] added no method fallback response to api
+- [ ] added graceful error handling in controllers
 
 ## Notes
 
