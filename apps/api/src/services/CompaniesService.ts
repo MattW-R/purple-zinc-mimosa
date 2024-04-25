@@ -58,7 +58,7 @@ const getCompanyById = async (companyId: number): Promise<CompanyWithEmployees |
 const getCompanies = async (
     limit: number,
     offset: number,
-    filters?: { companyName?: string }
+    filters?: { companyName?: string; activeStatus?: boolean }
 ): Promise<CompanyWithEmployees[]> => {
     const dbClient = await dbClientConnection;
     const db = dbClient.db('purple-zinc-mimosa');
@@ -67,6 +67,9 @@ const getCompanies = async (
     const initialQuery: Record<string, any> = {};
     if (filters && filters.companyName) {
         initialQuery['name'] = filters.companyName;
+    }
+    if (filters && filters.activeStatus !== undefined) {
+        initialQuery['active'] = filters.activeStatus;
     }
 
     return companiesCollection

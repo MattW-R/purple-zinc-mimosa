@@ -6,6 +6,10 @@ const QueryParams = z.object({
     limit: z.coerce.number().max(1000).min(0).default(100),
     offset: z.coerce.number().min(0).default(0),
     companyName: z.string().optional(),
+    activeStatus: z
+        .enum(['true', 'false'])
+        .transform((value) => value === 'true')
+        .optional(),
 });
 
 export const GetCompaniesController = async (req: express.Request, res: express.Response) => {
@@ -17,9 +21,12 @@ export const GetCompaniesController = async (req: express.Request, res: express.
             message: 'Invalid query parameters.',
         });
     } else {
-        const { limit, offset, companyName } = queryParamsParseResult.data;
+        const { limit, offset, companyName, activeStatus } = queryParamsParseResult.data;
 
-        const companies = await CompaniesService.getCompanies(limit, offset, { companyName });
+        const companies = await CompaniesService.getCompanies(limit, offset, {
+            companyName,
+            activeStatus,
+        });
 
         if (companies.length > 0) {
             res.status(200).json({
