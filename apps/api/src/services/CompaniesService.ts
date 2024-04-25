@@ -54,6 +54,32 @@ const getCompanyById = async (companyId: number): Promise<CompanyWithEmployees |
     return company;
 };
 
+const getCompanies = async (): Promise<CompanyWithEmployees[]> => {
+    const dbClient = await dbClientConnection;
+    const db = dbClient.db('purple-zinc-mimosa');
+    const companiesCollection = db.collection('companies');
+
+    return companiesCollection
+        .aggregate<CompanyWithEmployees>([
+            {
+                $lookup: {
+                    from: 'employees',
+                    localField: 'id',
+                    foreignField: 'company_id',
+                    as: 'employees',
+                },
+            },
+            {
+                $project: {
+                    _id: 0,
+                    'employees._id': 0,
+                },
+            },
+        ])
+        .toArray();
+};
+
 export const CompaniesService = {
     getCompanyById,
+    getCompanies,
 };
