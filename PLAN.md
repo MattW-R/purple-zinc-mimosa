@@ -44,7 +44,7 @@ Written in the form of git commit messages:
 - [X] added production mode to project
 - [X] added project README
 - [X] added route documentation
-- [ ] added newman cli support for demonstrating endpoints
+- [X] added newman cli support for demonstrating endpoints
 ### Extension
 - [X] added support to GET /companies/{id} route for multiple ids
 
@@ -58,5 +58,5 @@ Written in the form of git commit messages:
 ## Notes
 
 - My understanding is that tests are not included in the task itself but only a subject of discussion, so I have not created any here.
-- Tested endpoints locally using Postman during development.
+- Tested endpoints locally using Postman during development. Exported results for demonstration with newman CLI.
 - Tested db content locally using MongoDB Compass during development.

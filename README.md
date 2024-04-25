@@ -17,11 +17,18 @@ yarn install
 sudo docker-compose -f docker-compose.dev.yml up --build
 ```
 
-
 ## Run in Production Mode
 
 ```bash
 sudo docker-compose up --build
+```
+
+## Demonstrate Routes
+
+When running in development or production mode:
+
+```bash
+yarn demo
 ```
 
 ## Lint Project
