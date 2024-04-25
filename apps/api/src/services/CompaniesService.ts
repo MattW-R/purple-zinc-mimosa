@@ -45,6 +45,7 @@ const getCompanyById = async (companyId: number): Promise<CompanyWithEmployees |
             {
                 $project: {
                     _id: 0,
+                    'employees._id': 0,
                 },
             },
         ])
