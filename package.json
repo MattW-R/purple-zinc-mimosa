@@ -7,11 +7,11 @@
     "apps/*"
   ],
   "scripts": {
-    "preinstall": "lerna link",
     "postinstall": "lerna bootstrap",
     "lint": "eslint --cache .",
     "format": "prettier --write --ignore-unknown --config ./.prettierrc.json --ignore-path .prettierignore .",
-    "prepare": "husky"
+    "prepare": "husky",
+    "build": "lerna run build"
   },
   "dependencies": {
     "lerna": "^6.6.2"

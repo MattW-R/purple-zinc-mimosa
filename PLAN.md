@@ -41,7 +41,7 @@ Written in the form of git commit messages:
 ### Finish & Tidy Up
 - [X] added JSDoc blocks to functions
 - [X] added JSDoc blocks to controllers
-- [ ] added production mode to project
+- [X] added production mode to project
 - [ ] added project README
 - [ ] added route documentation
 - [ ] added newman cli support for demonstrating endpoints
