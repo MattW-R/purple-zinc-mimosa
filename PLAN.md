@@ -28,7 +28,7 @@ Written in the form of git commit messages:
 ### API
 - [X] set up initial TypeScript express API \
 *Using express due to familiarity and diversity of available packages to expand on it.*
-- [ ] created basic db service function for retrieving a single company's data
+- [X] created basic db service function for retrieving a single company's data
 - [ ] created basic controller and route for retrieving a single company's data
 - [ ] created basic db service function for retrieving multiple companies' data
 - [ ] created basic controller and route for retrieving multiple companies' data
