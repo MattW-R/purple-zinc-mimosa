@@ -54,6 +54,7 @@ Written in the form of git commit messages:
 - [X] fixed mongo instance still holding seeded data between restarts
 - [X] added no method fallback response to api
 - [X] added graceful error handling in controllers
+- [X] added express mongo sanitize middleware
 
 ## Notes
 

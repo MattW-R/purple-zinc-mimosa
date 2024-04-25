@@ -6,6 +6,7 @@
   "dependencies": {
     "@packages/schemas": "0.0.1",
     "express": "^4.19.2",
+    "express-mongo-sanitize": "^2.2.0",
     "mongodb": "^6.5.0",
     "zod": "^3.23.4"
   },
