@@ -3,14 +3,9 @@ FROM node:18.20.1 AS build
 
 WORKDIR /app
 
-COPY package.json yarn.lock lerna.json ./
-COPY apps/seed/package.json app/seed/package.json
-COPY apps/api/package.json app/api/package.json
-COPY packages/schemas/package.json packages/schemas/package.json
+COPY . .
 
 RUN yarn install --frozen-lockfile
-
-COPY . .
 
 RUN yarn build
 

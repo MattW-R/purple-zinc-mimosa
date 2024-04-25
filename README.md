@@ -13,6 +13,8 @@ yarn install
 
 ## Run in Development Mode
 
+Must have installed dependencies.
+
 ```bash
 sudo docker-compose -f docker-compose.dev.yml up --build
 ```
@@ -25,6 +27,7 @@ sudo docker-compose up --build
 
 ## Demonstrate Routes
 
+Must have installed dependencies.
 When running in development or production mode:
 
 ```bash
@@ -33,11 +36,15 @@ yarn demo
 
 ## Lint Project
 
+Must have installed dependencies.
+
 ```bash
 yarn lint
 ```
 
 ## Format Project
+
+Must have installed dependencies.
 
 ```bash
 yarn format

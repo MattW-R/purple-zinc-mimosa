@@ -1,0 +1,9 @@
+.history/*
+.idea/
+node_modules
+lerna-debug.log
+build/
+.eslintcache
+*.md
+*Dockerfile
+docker-compose.*
