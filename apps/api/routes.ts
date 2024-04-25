@@ -7,7 +7,10 @@ const Routes = (app: express.Application): void => {
     app.get('/companies/:id', GetCompanyController);
 
     app.all('/*', (req, res) => {
-        // TODO
+        res.status(405).json({
+            success: false,
+            message: 'Method not allowed.',
+        });
     });
 };
 

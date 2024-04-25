@@ -52,7 +52,7 @@ Written in the form of git commit messages:
 
 - [X] refactored repeated json file import logic into helper function
 - [X] fixed mongo instance still holding seeded data between restarts
-- [ ] added no method fallback response to api
+- [X] added no method fallback response to api
 - [ ] added graceful error handling in controllers
 
 ## Notes
